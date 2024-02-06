@@ -1,6 +1,6 @@
 # ActionsMinUtils
 
-This is a very small set of utilities for working with [.net (core)][dotnet] based [GitHub Actions][actions].
+This is a very small set of utilities for working with [.NET Core][dotnet] based [GitHub Actions][actions].
 
 <!-- Refs -->
 [dotnet]: https://dotnet.microsoft.com
