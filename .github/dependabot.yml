@@ -8,12 +8,12 @@ updates:
     schedule:
       interval: weekly
     groups:
-      - nuget:
-          update-types: [ minor, patch]
+      nuget:
+        update-types: [ minor, patch ]
   - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: weekly
     groups:
-      - actions:
-          update-types: [ minor, patch]
+      actions:
+        update-types: [ minor, patch ]
