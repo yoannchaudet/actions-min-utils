@@ -5,6 +5,22 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+
+        <PackageId>ActionsMinUtils</PackageId>
+        <PackageVersion>0.0.0-beta</PackageVersion>
+        <PackageReadmeFile>/README.md</PackageReadmeFile>
+        <RepositoryUrl>https://github.com/yoannchaudet/actions-min-utils</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <Authors>Yoann Chaudet</Authors>
+        <Description>A very small set of utilities for working with .NET Core based GitHub Actions.</Description>
+
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="README.md">
+            <Pack>true</Pack>
+            <PackagePath>/</PackagePath>
+        </None>
+    </ItemGroup>
 
 </Project>
