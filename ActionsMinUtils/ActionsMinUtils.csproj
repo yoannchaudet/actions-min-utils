@@ -16,6 +16,9 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+        <!-- Include XML documentation but don't warn if not everything is documented -->
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
     </PropertyGroup>
     
     <PropertyGroup>
@@ -29,6 +32,7 @@
         <PackageIcon>icon.jpg</PackageIcon>
         <Authors>Yoann Chaudet</Authors>
         <Description>A very small set of utilities for working with .NET Core based GitHub Actions.</Description>
+        <PackageTags>GitHub Actions, .NET Core, Utilities</PackageTags>
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\README.md" Pack="True" PackagePath=""/>
