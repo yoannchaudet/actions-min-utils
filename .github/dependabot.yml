@@ -1,6 +1,5 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
   - package-ecosystem: nuget
@@ -10,6 +9,7 @@ updates:
     groups:
       nuget:
         update-types: [ minor, patch ]
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
