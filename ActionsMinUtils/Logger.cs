@@ -3,47 +3,77 @@ using System.Text;
 
 namespace ActionsMinUtils;
 
+/// <summary>
+/// A simple logger for GitHub Actions
+/// </summary>
 public static class Logger
 {
-    // Write a debug message
+    /// <summary>
+    /// Write a debug message
+    /// </summary>
+    /// <param name="message"></param>
     public static void Debug(string? message)
     {
         IssueCommand(new CommandEnvelope("debug", null, message));
     }
 
-    // Write an error message (potentially along with an annotation)
+    /// <summary>
+    /// Write an error message (potentially along with an annotation)
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="annotationProps"></param>
+    /// <param name="throws">If true, throws an exception</param>
+    /// <returns></returns>
     public static Exception? Error(string? message, AnnotationProperties? annotationProps = null, bool throws = false)
     {
         IssueCommand(new CommandEnvelope("error", annotationProps.ToDictionary(), message));
         return throws ? new Exception(message) : null;
     }
 
-    // Write a warning message (potentially along with an annotation)
+    /// <summary>
+    /// Write a warning message (potentially along with an annotation)
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="annotationProps"></param>
     public static void Warning(string? message, AnnotationProperties? annotationProps = null)
     {
         IssueCommand(new CommandEnvelope("warning", annotationProps.ToDictionary(), message));
     }
 
-    // Write a notice message (potentially along with an annotation)
+    /// <summary>
+    /// Write a notice message (potentially along with an annotation)
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="annotationProps"></param>
     public static void Notice(string? message, AnnotationProperties? annotationProps = null)
     {
         IssueCommand(new CommandEnvelope("notice", annotationProps.ToDictionary(), message));
     }
 
-    // Write an info message
+    /// <summary>
+    /// Write an info message
+    /// </summary>
+    /// <param name="message"></param>
     public static void Info(string message)
     {
         Console.WriteLine(message);
     }
 
-    // Write a group[ and return an IDisposable to be used in a using statement (for closing the group)
+    /// <summary>
+    /// Write a group and return an IDisposable to be used in a using statement (for closing the group)
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public static IDisposable Group(string name)
     {
         IssueCommand(new CommandEnvelope("group", new Dictionary<string, string> { { "name", name } }, ""));
         return new EndGroupDisposable();
     }
 
-    // Issue a command on the standard output
+    /// <summary>
+    /// Issue a command on the standard output
+    /// </summary>
+    /// <param name="command"></param>
     private static void IssueCommand(CommandEnvelope command)
     {
         Console.WriteLine(command.ToString());
@@ -74,7 +104,9 @@ public static class Logger
         }
     }
 
-    // Annotation properties object
+    /// <summary>
+    /// Annotation properties object
+    /// </summary>
     public class AnnotationProperties
     {
         public string? Title { get; init; }
