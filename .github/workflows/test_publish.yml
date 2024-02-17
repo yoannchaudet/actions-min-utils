@@ -95,6 +95,8 @@ jobs:
     if: github.event_name == 'release'
 
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     needs: [validate_package, test]
     steps:
       # Download the NuGet package created in the previous job
