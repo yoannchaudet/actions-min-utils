@@ -26,7 +26,7 @@ jobs:
   pack:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Get all history to allow automatic versioning using MinVer
 
@@ -76,7 +76,7 @@ jobs:
       pull-requests: write
       contents: read
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
       - name: Test
@@ -113,5 +113,5 @@ jobs:
       - name: Publish NuGet package
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
-              dotnet nuget push $file --api-key "${{ secrets.GITHUB_TOKEN }}" --source "https://nuget.pkg.github.com/${{ env.GITHUB_REPOSITORY_OWNER }}/index.json" --skip-duplicate
+              dotnet nuget push $file --api-key "${{ secrets.GITHUB_TOKEN }}" --source "https://nuget.pkg.github.com/${GITHUB_REPOSITORY_OWNER}/index.json" --skip-duplicate
           }
