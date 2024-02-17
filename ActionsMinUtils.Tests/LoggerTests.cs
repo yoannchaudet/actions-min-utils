@@ -23,6 +23,15 @@ public class LoggerTests
     }
 
     [Fact]
+    public void TestFatal()
+    {
+        var output = new StringWriter();
+        Console.SetOut(output);
+        Assert.Throws<Exception>(() => Logger.Fatal("Oh no!"));
+        Assert.Equal($"::error::Oh no!{Environment.NewLine}", output.ToString());
+    }
+
+    [Fact]
     public void TestErrorWithAnnotation()
     {
         var output = new StringWriter();

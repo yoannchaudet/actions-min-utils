@@ -22,14 +22,24 @@ public static class Logger
     /// </summary>
     /// <param name="message"></param>
     /// <param name="annotationProps"></param>
-    /// <param name="throws">If true, throws an exception</param>
     /// <returns></returns>
-    public static Exception? Error(string? message, AnnotationProperties? annotationProps = null, bool throws = false)
+    public static void Error(string? message, AnnotationProperties? annotationProps = null)
     {
         IssueCommand(new CommandEnvelope("error", annotationProps.ToDictionary(), message));
-        return throws ? new Exception(message) : null;
     }
 
+    /// <summary>
+    /// Like #Error, but also throws an exception
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="annotationProps"></param>
+    /// <exception cref="Exception"></exception>
+    public static void Fatal(string? message, AnnotationProperties? annotationProps = null)
+    {
+        Error(message, annotationProps);
+        throw new Exception(message);
+    }
+    
     /// <summary>
     /// Write a warning message (potentially along with an annotation)
     /// </summary>
