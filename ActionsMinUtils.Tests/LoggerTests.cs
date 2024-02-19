@@ -27,7 +27,8 @@ public class LoggerTests
     {
         var output = new StringWriter();
         Console.SetOut(output);
-        Assert.Throws<Exception>(() => Logger.Fatal("Oh no!"));
+        var e = Assert.Throws<Exception>(() => Logger.Fatal("Oh no!"));
+        Assert.Equal("Oh no!", e.Message);
         Assert.Equal($"::error::Oh no!{Environment.NewLine}", output.ToString());
     }
 

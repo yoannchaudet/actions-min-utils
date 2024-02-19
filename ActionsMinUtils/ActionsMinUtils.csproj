@@ -1,5 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
+
+    <!-- Testing -->
+    <ItemGroup>
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/> <!-- NSubstitute -->
+        <InternalsVisibleTo Include="ActionsMinUtils.Tests"/>
+    </ItemGroup>
+
     <ItemGroup>
         <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
             <PrivateAssets>all</PrivateAssets>
@@ -20,7 +26,7 @@
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
         <NoWarn>$(NoWarn);CS1591</NoWarn>
     </PropertyGroup>
-    
+
     <PropertyGroup>
         <IncludeContentInPack>true</IncludeContentInPack>
         <PackageId>ActionsMinUtils</PackageId>
