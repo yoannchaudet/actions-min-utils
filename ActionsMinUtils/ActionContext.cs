@@ -1,12 +1,12 @@
 namespace ActionsMinUtils;
 
 /// <summary>
-/// A base class for reading environment variable and inputs from the context of a Docker Action.
+///     A base class for reading environment variable and inputs from the context of a Docker Action.
 /// </summary>
 public class ActionContext
 {
     /// <summary>
-    /// Get an environment variable by name.
+    ///     Get an environment variable by name.
     /// </summary>
     /// <param name="variable"></param>
     /// <param name="required"></param>
@@ -22,7 +22,7 @@ public class ActionContext
     }
 
     /// <summary>
-    /// Get an input by name.
+    ///     Get an input by name.
     /// </summary>
     /// <param name="input"></param>
     /// <param name="required"></param>

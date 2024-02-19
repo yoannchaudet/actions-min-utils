@@ -4,12 +4,12 @@ using System.Text;
 namespace ActionsMinUtils;
 
 /// <summary>
-/// A simple logger for GitHub Actions
+///     A simple logger for GitHub Actions
 /// </summary>
 public static class Logger
 {
     /// <summary>
-    /// Write a debug message
+    ///     Write a debug message
     /// </summary>
     /// <param name="message"></param>
     public static void Debug(string? message)
@@ -18,7 +18,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Write an error message (potentially along with an annotation)
+    ///     Write an error message (potentially along with an annotation)
     /// </summary>
     /// <param name="message"></param>
     /// <param name="annotationProps"></param>
@@ -29,7 +29,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Like #Error, but also throws an exception
+    ///     Like #Error, but also throws an exception
     /// </summary>
     /// <param name="message"></param>
     /// <param name="annotationProps"></param>
@@ -39,9 +39,9 @@ public static class Logger
         Error(message, annotationProps);
         throw new Exception(message);
     }
-    
+
     /// <summary>
-    /// Write a warning message (potentially along with an annotation)
+    ///     Write a warning message (potentially along with an annotation)
     /// </summary>
     /// <param name="message"></param>
     /// <param name="annotationProps"></param>
@@ -51,7 +51,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Write a notice message (potentially along with an annotation)
+    ///     Write a notice message (potentially along with an annotation)
     /// </summary>
     /// <param name="message"></param>
     /// <param name="annotationProps"></param>
@@ -61,7 +61,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Write an info message
+    ///     Write an info message
     /// </summary>
     /// <param name="message"></param>
     public static void Info(string message)
@@ -70,7 +70,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Write a group and return an IDisposable to be used in a using statement (for closing the group)
+    ///     Write a group and return an IDisposable to be used in a using statement (for closing the group)
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
@@ -81,7 +81,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Issue a command on the standard output
+    ///     Issue a command on the standard output
     /// </summary>
     /// <param name="command"></param>
     private static void IssueCommand(CommandEnvelope command)
@@ -115,7 +115,7 @@ public static class Logger
     }
 
     /// <summary>
-    /// Annotation properties object
+    ///     Annotation properties object
     /// </summary>
     public class AnnotationProperties
     {

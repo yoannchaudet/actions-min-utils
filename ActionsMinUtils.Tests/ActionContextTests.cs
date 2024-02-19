@@ -40,8 +40,8 @@ public class ActionContextTests
 
         Assert.Equal(value, ctx.GetInput(input));
     }
-    
-    
+
+
     [Fact]
     public void ValidatesInput()
     {
