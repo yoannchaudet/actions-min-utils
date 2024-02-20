@@ -98,7 +98,7 @@ jobs:
     # Publish only when creating a GitHub Release or explicitly in a workflow_dispatch
     # https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
     # You can update this logic if you want to manage releases differently
-    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy)
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.deploy == 'true')
 
     runs-on: ubuntu-latest
     permissions:
