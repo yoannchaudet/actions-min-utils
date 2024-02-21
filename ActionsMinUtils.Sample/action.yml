@@ -1,0 +1,6 @@
+name: ActionsMinUtils.Sample
+description: Demonstrating ActionsMinUtils
+author: "@yoannchaudet"
+runs:
+  using: docker
+  image: Dockerfile
