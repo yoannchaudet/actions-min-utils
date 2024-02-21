@@ -86,7 +86,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
       - name: Test
-        run: dotnet test --configuration ${{ env.Configuration }} --logger:trx
+        run: dotnet test --configuration ${{ env.CONFIGURATION }} --logger:trx
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
