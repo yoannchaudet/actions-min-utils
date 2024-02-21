@@ -106,7 +106,7 @@ public class LoggerTests
         }
 
         Assert.Equal(
-            $"::group name=hello::{Environment.NewLine}world{Environment.NewLine}::endgroup::{Environment.NewLine}",
+            $"::group::hello{Environment.NewLine}world{Environment.NewLine}::endgroup::{Environment.NewLine}",
             output.ToString());
     }
 

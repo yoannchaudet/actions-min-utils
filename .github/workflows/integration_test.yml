@@ -1,0 +1,38 @@
+# Run a basic integration test
+
+name: Integration Test
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  DOTNET_NOLOGO: true
+  CONFIGURATION: Release
+  
+defaults:
+  run:
+    shell: pwsh
+   
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+
+      - run: dotnet build ActionsMinUtils.Sample --configuration ${{ env.CONFIGURATION }}
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ActionsMinUtils.Sample
+        uses: ./ActionsMinUtils.Sample/
+        with:
+          name: 'Yoann'
