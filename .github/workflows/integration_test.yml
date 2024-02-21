@@ -34,3 +34,5 @@ jobs:
 
       - name: ActionsMinUtils.Sample
         uses: ./ActionsMinUtils.Sample/
+        with:
+          name: 'Yoann'

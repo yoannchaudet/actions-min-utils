@@ -4,3 +4,8 @@ author: "@yoannchaudet"
 runs:
   using: docker
   image: Dockerfile
+inputs:
+  name:
+    description: 'Name of the person to greet'
+    required: true
+    default: 'World'

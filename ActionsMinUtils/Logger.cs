@@ -76,7 +76,7 @@ public static class Logger
     /// <returns></returns>
     public static IDisposable Group(string name)
     {
-        IssueCommand(new CommandEnvelope("group", new Dictionary<string, string> { { "name", name } }, ""));
+        IssueCommand(new CommandEnvelope("group", null, name));
         return new EndGroupDisposable();
     }
 
