@@ -21,8 +21,8 @@ on:
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
-  NuGetDirectory: ${{ github.workspace}}/nuget
-  Configuration: Release
+  NUGET_DIRECTORY: ${{ github.workspace}}/nuget
+  CONFIGURATION: Release
 
 defaults:
   run:
@@ -41,7 +41,7 @@ jobs:
         uses: actions/setup-dotnet@v4
 
       # Create the NuGet package in the folder from the environment variable NuGetDirectory
-      - run: dotnet pack ActionsMinUtils --configuration ${{ env.Configuration }} --output ${{ env.NuGetDirectory }}
+      - run: dotnet pack ActionsMinUtils --configuration ${{ env.CONFIGURATION }} --output ${{ env.NUGET_DIRECTORY }}
 
       # Publish the NuGet package as an artifact, so they can be used in the following jobs
       - uses: actions/upload-artifact@v4
@@ -49,7 +49,7 @@ jobs:
           name: nuget
           if-no-files-found: error
           retention-days: 7
-          path: ${{ env.NuGetDirectory }}/*.nupkg
+          path: ${{ env.NUGET_DIRECTORY }}/*.nupkg
 
   validate_package:
     runs-on: ubuntu-latest
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: nuget
-          path: ${{ env.NuGetDirectory }}
+          path: ${{ env.NUGET_DIRECTORY }}
 
       - name: Install nuget validator
         run: dotnet tool update Meziantou.Framework.NuGetPackageValidation.Tool --global
@@ -73,7 +73,7 @@ jobs:
       # If some rules are not applicable, you can disable them
       # using the --excluded-rules or --excluded-rule-ids option
       - name: Validate package
-        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NuGetDirectory }}/*.nupkg")
+        run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NUGET_DIRECTORY }}/*.nupkg")
 
   test:
     runs-on: ubuntu-latest
@@ -109,7 +109,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: nuget
-          path: ${{ env.NuGetDirectory }}
+          path: ${{ env.NUGET_DIRECTORY }}
 
       # Install the .NET SDK indicated in the global.json file
       - name: Setup .NET Core
@@ -120,6 +120,6 @@ jobs:
       # If you retry a failed workflow, already published packages will be skipped without error.
       - name: Publish NuGet package
         run: |
-          foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
+          foreach($file in (Get-ChildItem "${{ env.NUGET_DIRECTORY }}" -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source "https://api.nuget.org/v3/index.json" --skip-duplicate
           }
