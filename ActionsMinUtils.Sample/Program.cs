@@ -13,7 +13,7 @@ using (Logger.Group("Greetings"))
 
 // Make some API calls too
 var github = new GitHub(ctx.GitHubToken);
-var user = await github.RestClient.User.Current();
+var user = await github.ExecuteAsync(async () => await github.RestClient.User.Current());
 Logger.Info($"User {user.Email} (which is probably you) has ID {user.Id}!");
 
 internal class Context : ActionContext

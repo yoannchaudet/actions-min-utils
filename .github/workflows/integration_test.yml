@@ -29,6 +29,11 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+
+    # Grant permissions to read profile
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
 
