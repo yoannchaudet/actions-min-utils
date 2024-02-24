@@ -16,7 +16,7 @@ var github = new GitHub(ctx.GitHubToken);
 var ownerName = ctx.GitHubRepository.Split('/')[0];
 var repoName = ctx.GitHubRepository.Split('/')[1];
 var repo = await github.ExecuteAsync(async () => await github.RestClient.Repository.Get(ownerName, repoName));
-Logger.Info($"This action ran from the context of repository {repo.Id} with License: {repo.License.Name}!");
+Logger.Info($"This action ran from the context of repository {repo.Id} and the {repo.License.Name}!");
 
 internal class Context : ActionContext
 {
