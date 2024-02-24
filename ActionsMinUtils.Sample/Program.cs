@@ -6,13 +6,14 @@ var ctx = new Context();
 // Log a few things out of the context
 Logger.Debug($"Current workspace is {ctx.GitHubWorkspace}");
 Logger.Info($"Hello, {ctx.Name}!");
-using (Logger.Group("Greetings"))
+using (Logger.Group("Here is a little greetings group"))
 {
     Logger.Info("Hello world!");
 }
 
 // Make some API calls too
 var github = new GitHub(ctx.GitHubToken);
+Logger.Info($"Pulling information about repository {ctx.GitHubActionRepository}");
 var ownerName = ctx.GitHubActionRepository.Split('/')[0];
 var repoName = ctx.GitHubActionRepository.Split('/')[1];
 var repo = await github.ExecuteAsync(async () => await github.RestClient.Repository.Get(ownerName, repoName));
