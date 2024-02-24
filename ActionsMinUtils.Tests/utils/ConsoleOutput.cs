@@ -1,4 +1,4 @@
-namespace ActionsMinUtils.Tests;
+namespace ActionsMinUtils.Tests.utils;
 
 // Utility class for locking console output in parallel tests
 public static class ConsoleOutput
