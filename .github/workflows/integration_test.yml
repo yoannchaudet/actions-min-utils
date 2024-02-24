@@ -11,11 +11,11 @@ env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
   DOTNET_NOLOGO: true
   CONFIGURATION: Release
-  
+
 defaults:
   run:
     shell: pwsh
-   
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,10 +29,17 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+
+    # Grant permissions to read profile
+    permissions:
+      contents: read
+
     steps:
       - uses: actions/checkout@v4
 
       - name: ActionsMinUtils.Sample
         uses: ./ActionsMinUtils.Sample/
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         with:
           name: 'Yoann'

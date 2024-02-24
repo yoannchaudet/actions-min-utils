@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ActionsMinUtils" Version="0.0.0-alpha.0.35"/>
+        <PackageReference Include="ActionsMinUtils" Version="0.0.0-alpha"/>
     </ItemGroup>
 
 </Project>
