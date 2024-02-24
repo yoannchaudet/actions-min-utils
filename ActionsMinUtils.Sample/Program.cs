@@ -13,16 +13,15 @@ using (Logger.Group("Here is a little greetings group"))
 
 // Make some API calls too
 var github = new GitHub(ctx.GitHubToken);
-Logger.Info($"Pulling information about repository {ctx.GitHubActionRepository}");
-var ownerName = ctx.GitHubActionRepository.Split('/')[0];
-var repoName = ctx.GitHubActionRepository.Split('/')[1];
+var ownerName = ctx.GitHubRepository.Split('/')[0];
+var repoName = ctx.GitHubRepository.Split('/')[1];
 var repo = await github.ExecuteAsync(async () => await github.RestClient.Repository.Get(ownerName, repoName));
-Logger.Info($"This action ran from repository {repo.Id} with License: {repo.License.Name}!");
+Logger.Info($"This action ran from the context of repository {repo.Id} with License: {repo.License.Name}!");
 
 internal class Context : ActionContext
 {
     public string GitHubWorkspace => GetEnvironmentVariable("GITHUB_WORKSPACE", true)!;
     public string GitHubToken => GetEnvironmentVariable("GITHUB_TOKEN", true)!;
-    public string GitHubActionRepository => GetEnvironmentVariable("GITHUB_ACTION_REPOSITORY", true)!;
+    public string GitHubRepository => GetEnvironmentVariable("GITHUB_REPOSITORY", true)!;
     public string Name => GetInput("name", true)!;
 }
