@@ -1,105 +1,95 @@
 namespace ActionsMinUtils.Tests;
 
-public class LoggerTests
+public class LoggerTests : IDisposable
 {
+    public LoggerTests()
+    {
+        ConsoleOutput.Capture();
+    }
+
+    public void Dispose()
+    {
+        ConsoleOutput.Release();
+    }
+
     // Logging tests
 
     [Fact]
     public void TestDebug()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Debug("hello");
-        Assert.Equal($"::debug::hello{Environment.NewLine}", output.ToString());
+        Assert.Equal($"::debug::hello{Environment.NewLine}", ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestError()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Error("hello");
-        Assert.Equal($"::error::hello{Environment.NewLine}", output.ToString());
+        Assert.Equal($"::error::hello{Environment.NewLine}", ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestFatal()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         var e = Assert.Throws<Exception>(() => Logger.Fatal("Oh no!"));
         Assert.Equal("Oh no!", e.Message);
-        Assert.Equal($"::error::Oh no!{Environment.NewLine}", output.ToString());
+        Assert.Equal($"::error::Oh no!{Environment.NewLine}", ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestErrorWithAnnotation()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Error("hello",
             new Logger.AnnotationProperties
                 { Title = "", File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
         Assert.Equal($"::error title=,file=foo,line=1,endLine=2,col=3,endColumn=4::hello{Environment.NewLine}",
-            output.ToString());
+            ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestWarning()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Warning("hello");
-        Assert.Equal($"::warning::hello{Environment.NewLine}", output.ToString());
+        Assert.Equal($"::warning::hello{Environment.NewLine}", ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestWarningWithAnnotation()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Warning("hello",
             new Logger.AnnotationProperties
                 { File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
         Assert.Equal($"::warning title=,file=foo,line=1,endLine=2,col=3,endColumn=4::hello{Environment.NewLine}",
-            output.ToString());
+            ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestNotice()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Notice("hello");
-        Assert.Equal($"::notice::hello{Environment.NewLine}", output.ToString());
+        Assert.Equal($"::notice::hello{Environment.NewLine}", ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestNoticeWithAnnotation()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Notice("hello",
             new Logger.AnnotationProperties
                 { File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
         Assert.Equal($"::notice title=,file=foo,line=1,endLine=2,col=3,endColumn=4::hello{Environment.NewLine}",
-            output.ToString());
+            ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestInfo()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         Logger.Info("hello");
-        Assert.Equal($"hello{Environment.NewLine}", output.ToString());
+        Assert.Equal($"hello{Environment.NewLine}", ConsoleOutput.Output());
     }
 
     [Fact]
     public void TestGroup()
     {
-        var output = new StringWriter();
-        Console.SetOut(output);
         using (Logger.Group("hello"))
         {
             Logger.Info("world");
@@ -107,7 +97,7 @@ public class LoggerTests
 
         Assert.Equal(
             $"::group::hello{Environment.NewLine}world{Environment.NewLine}::endgroup::{Environment.NewLine}",
-            output.ToString());
+            ConsoleOutput.Output());
     }
 
     // CommandEnvelope tests
