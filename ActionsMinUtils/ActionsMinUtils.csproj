@@ -6,6 +6,13 @@
         <InternalsVisibleTo Include="ActionsMinUtils.Tests"/>
     </ItemGroup>
 
+    <!-- Runtime dependencies -->
+    <ItemGroup>
+        <PackageReference Include="octokit" Version="9.1.2"/>
+        <PackageReference Include="octokit.graphql" Version="0.3.0-beta"/>
+        <PackageReference Include="Polly" Version="8.3.0"/>
+    </ItemGroup>
+
     <!-- Build & CI -->
     <ItemGroup>
         <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
@@ -46,20 +53,20 @@
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\icon.jpg">
-          <Pack>True</Pack>
-          <PackagePath>resources</PackagePath>
-          <Link>resources\icon.jpg</Link>
+            <Pack>True</Pack>
+            <PackagePath>resources</PackagePath>
+            <Link>resources\icon.jpg</Link>
         </None>
         <None Include="..\LICENSE">
-          <Pack>True</Pack>
-          <PackagePath>resources</PackagePath>
-          <Link>resources\LICENSE</Link>
+            <Pack>True</Pack>
+            <PackagePath>resources</PackagePath>
+            <Link>resources\LICENSE</Link>
         </None>
         <None Include="..\README.md">
-          <Pack>True</Pack>
-          <PackagePath>resources</PackagePath>
-          <Link>resources\README.md</Link>
+            <Pack>True</Pack>
+            <PackagePath>resources</PackagePath>
+            <Link>resources\README.md</Link>
         </None>
     </ItemGroup>
-    
+
 </Project>
