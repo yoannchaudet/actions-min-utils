@@ -1,8 +1,10 @@
+using ActionsMinUtils.Tests.utils;
 using NSubstitute;
+using Xunit.Abstractions;
 
 namespace ActionsMinUtils.Tests;
 
-public class ActionContextTests
+public class ActionContextTests(ITestOutputHelper testOutputHelper) : ConsoleOutputTests(testOutputHelper)
 {
     [Theory]
     [InlineData("test", "value")]

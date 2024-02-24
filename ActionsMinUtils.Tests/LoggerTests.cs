@@ -1,17 +1,10 @@
+using ActionsMinUtils.Tests.utils;
+using Xunit.Abstractions;
+
 namespace ActionsMinUtils.Tests;
 
-public class LoggerTests : IDisposable
+public class LoggerTests(ITestOutputHelper testOutputHelper) : ConsoleOutputTests(testOutputHelper)
 {
-    public LoggerTests()
-    {
-        ConsoleOutput.Capture();
-    }
-
-    public void Dispose()
-    {
-        ConsoleOutput.Release();
-    }
-
     // Logging tests
 
     [Fact]
