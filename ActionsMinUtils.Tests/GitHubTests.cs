@@ -47,7 +47,8 @@ public class GitHubTests : IDisposable
         await Assert.ThrowsAsync<HttpRequestException>(async () => await GitHub.ExecuteAsync(fail));
 
         // Validate the output has 5 warnings
-        var lines = ConsoleOutput.Output().Split(Environment.NewLine).Where(line => line.Trim() != "")
+        var lines = ConsoleOutput.Output().Split(Environment.NewLine,
+                StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
             .ToList();
         Assert.Equal(5, lines.Count);
         Assert.Equal(5, lines.Where((line, i) => line.Contains($"attempt #{i + 1} of 5")).Count());
