@@ -10,7 +10,7 @@ namespace ActionsMinUtils;
 /// <summary>
 ///     GitHub API clients for both REST and GraphQL APIs with support for retry and a few convenience methods.
 /// </summary>
-public class GitHub(string githubToken)
+public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
 {
     /// <summary>
     ///     Header to pass to each API calls
@@ -44,7 +44,7 @@ public class GitHub(string githubToken)
             ShouldHandle = new PredicateBuilder()
                 .Handle<HttpRequestException>(r =>
                     r.StatusCode == HttpStatusCode.InternalServerError || r.StatusCode == HttpStatusCode.BadGateway)
-                .Handle<Octokit.AuthorizationException>(),
+                .Handle<AuthorizationException>(),
 
             // Add a little randomness to the delay
             UseJitter = true,
@@ -55,20 +55,21 @@ public class GitHub(string githubToken)
             //  2 ^ 2 = 4 seconds then
             //  2 ^ 3 = 8 seconds then
             //  2 ^ 4 = 16 seconds
-            DelayGenerator = static args =>
-                new ValueTask<TimeSpan?>(TimeSpan.FromSeconds(Math.Pow(2, args.AttemptNumber))),
+            DelayGenerator = args =>
+                new ValueTask<TimeSpan?>(delay?.Invoke(args.AttemptNumber) ??
+                                         TimeSpan.FromSeconds(Math.Pow(2, args.AttemptNumber))),
 
             // Logging (for each attempt)
             OnRetry = static args =>
             {
                 Logger.Warning(
-                    $"GitHub API call failed in {args.Duration.ToString()}, attempt #{args.AttemptNumber + 1} of 5, retrying in #{args.RetryDelay}): {args.Outcome.Exception!.ToString()}");
+                    $"GitHub API call failed in {args.Duration.ToString()}, attempt #{args.AttemptNumber + 1} of 5, retrying in #{args.RetryDelay}): {args.Outcome.Exception!}");
                 return default;
             }
         }).Build();
 
     /// <summary>
-    /// Execute a callback through a resilience pipeline that handles retry and logging.
+    ///     Execute a callback through a resilience pipeline that handles retry and logging.
     /// </summary>
     /// <param name="callback"></param>
     /// <typeparam name="TResult"></typeparam>
@@ -76,6 +77,6 @@ public class GitHub(string githubToken)
     public async ValueTask<TResult> ExecuteAsync<TResult>(
         Func<ValueTask<TResult>> callback)
     {
-        return await ResiliencePipeline.ExecuteAsync(async (_) => await callback());
+        return await ResiliencePipeline.ExecuteAsync(async _ => await callback());
     }
 }
