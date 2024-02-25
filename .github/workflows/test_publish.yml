@@ -29,6 +29,25 @@ defaults:
     shell: pwsh
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      pull-requests: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      - name: Test
+        run: dotnet test --configuration ${{ env.CONFIGURATION }} --logger:trx
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            **/TestResults/*.trx
+
   pack:
     runs-on: ubuntu-latest
     steps:
@@ -74,25 +93,6 @@ jobs:
       # using the --excluded-rules or --excluded-rule-ids option
       - name: Validate package
         run: meziantou.validate-nuget-package (Get-ChildItem "${{ env.NUGET_DIRECTORY }}/*.nupkg")
-
-  test:
-    runs-on: ubuntu-latest
-    permissions:
-      checks: write
-      pull-requests: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v4
-      - name: Test
-        run: dotnet test --configuration ${{ env.CONFIGURATION }} --logger:trx
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          files: |
-            **/TestResults/*.trx
 
   deploy:
     # Publish only when creating a GitHub Release or explicitly in a workflow_dispatch
