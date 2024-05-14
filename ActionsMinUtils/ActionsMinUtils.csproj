@@ -10,7 +10,7 @@
     <ItemGroup>
         <PackageReference Include="octokit" Version="11.0.1"/>
         <PackageReference Include="octokit.graphql" Version="0.3.0-beta"/>
-        <PackageReference Include="Polly" Version="8.3.1"/>
+        <PackageReference Include="Polly" Version="8.4.0"/>
     </ItemGroup>
 
     <!-- Build & CI -->
