@@ -10,12 +10,12 @@
     <ItemGroup>
         <PackageReference Include="octokit" Version="11.0.1"/>
         <PackageReference Include="octokit.graphql" Version="0.3.0-beta"/>
-        <PackageReference Include="Polly" Version="8.4.0"/>
+        <PackageReference Include="Polly" Version="8.4.1"/>
     </ItemGroup>
 
     <!-- Build & CI -->
     <ItemGroup>
-        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.4">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
