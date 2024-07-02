@@ -8,18 +8,18 @@
 
     <!-- Runtime dependencies -->
     <ItemGroup>
-        <PackageReference Include="octokit" Version="9.1.2"/>
+        <PackageReference Include="octokit" Version="13.0.0"/>
         <PackageReference Include="octokit.graphql" Version="0.3.0-beta"/>
-        <PackageReference Include="Polly" Version="8.3.0"/>
+        <PackageReference Include="Polly" Version="8.4.1"/>
     </ItemGroup>
 
     <!-- Build & CI -->
     <ItemGroup>
-        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.1.1">
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="1.2.4">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="MinVer" Version="4.3.0">
+        <PackageReference Include="MinVer" Version="5.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
