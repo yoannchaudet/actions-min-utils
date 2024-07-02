@@ -1,4 +1,5 @@
 using System.Net;
+using ActionsMinUtils.github;
 using ActionsMinUtils.Tests.utils;
 using Xunit.Abstractions;
 
