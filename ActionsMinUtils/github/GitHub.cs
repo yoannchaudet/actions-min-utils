@@ -5,7 +5,7 @@ using Polly.Retry;
 using Connection = Octokit.GraphQL.Connection;
 using ProductHeaderValue = Octokit.ProductHeaderValue;
 
-namespace ActionsMinUtils;
+namespace ActionsMinUtils.github;
 
 /// <summary>
 ///     GitHub API clients for both REST and GraphQL APIs with support for retry and a few convenience methods.
