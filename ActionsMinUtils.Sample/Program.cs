@@ -1,4 +1,5 @@
 ﻿using ActionsMinUtils;
+using ActionsMinUtils.github;
 
 // Get stuff from the context
 var ctx = new Context();
@@ -20,8 +21,8 @@ Logger.Info($"This action ran from the context of repository {repo.Id} and the {
 
 internal class Context : ActionContext
 {
-    public string GitHubWorkspace => GetEnvironmentVariable("GITHUB_WORKSPACE", true)!;
+    public string GitHubWorkspace => GetEnvironmentVariable(DefaultVariables.GitHubWorkspace, true)!;
     public string GitHubToken => GetEnvironmentVariable("GITHUB_TOKEN", true)!;
-    public string GitHubRepository => GetEnvironmentVariable("GITHUB_REPOSITORY", true)!;
+    public string GitHubRepository => GetEnvironmentVariable(DefaultVariables.GitHubRepository, true)!;
     public string Name => GetInput("name", true)!;
 }
