@@ -36,8 +36,13 @@ The [`GitHub`](./ActionsMinUtils/github/GitHub.cs) class defines two clients for
 
 The [`MarkersParser`](./ActionsMinUtils/templating/MarkersParser.cs) class provides utilities for parsing and formatting simple [`Markers`](./ActionsMinUtils/templating/Marker.cs). They are meant to be one-liner embedded in various text files (Markdown, YAML, etc.).
 
+### `Templates`
+
+The [`Templates`](./ActionsMinUtils/templating/Templates.cs) class provides basic templating capabilities using [Liquid][liquid] to parse templates from string or files. It comes with basic support for [`Markers`](./ActionsMinUtils/templating/Marker.cs) too and can be used to render arbitrary supplied variables.
+
 <!-- Refs -->
 
 [dotnet]: https://dotnet.microsoft.com
 [actions]: https://docs.github.com/en/actions
 [docker-container-action]: https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action
+[liquid]: https://shopify.github.io/liquid/basics/introduction/
