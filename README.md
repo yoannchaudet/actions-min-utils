@@ -10,30 +10,34 @@ It contains utilities for:
 - dealing with inputs and environment variables
 - talking to GitHub APIs (with retry)
 
-## Logger
+## `Logger`
 
-The [`Logger`](./ActionsMinUtils/Logger.cs) class is a simple wrapper around the `System.Console` class. It provides a
-few convenience methods for logging messages to the console in a way Actions can understand.
+The [`Logger`](./ActionsMinUtils/Logger.cs) class is a simple wrapper around the `System.Console` class. It provides a few convenience methods for logging messages to the console in a way Actions can understand.
 
-## ActionContext
+## `ActionContext`
 
-The [`ActionContext`](./ActionsMinUtils/ActionContext.cs) class provides methods for reading and validating both environment
-variables and inputs. As a matter
-of fact, to avoid having to deal with container `args`, inputs are read from environment variables!
+The [`ActionContext`](./ActionsMinUtils/ActionContext.cs) class provides methods for reading and validating both environment variables and inputs. As a matter of fact, to avoid having to deal with container `args`, inputs are read from environment variables!
 
 ## `github`
 
 This namespace provides various GitHub specific utilities.
 
-### DefaultVariables
+### `DefaultVariables`
 
 The [`DefaultVariables`](./ActionsMinUtils/github/DefaultVariables.cs) class defines useful constants for referring to default environment variables exposed to Actions runners.
 
-### GitHub
+### `GitHub`
 
 The [`GitHub`](./ActionsMinUtils/github/GitHub.cs) class defines two clients for talking to GitHub APIs, Rest and GraphQL.
 
+## `templating`
+
+### `MarkersParser`
+
+The [`MarkersParser`](./ActionsMinUtils/templating/MarkersParser.cs) class provides utilities for parsing and formatting simple [`Markers`](./ActionsMinUtils/templating/Marker.cs). They are meant to be one-liner embedded in various text files (Markdown, YAML, etc.).
+
 <!-- Refs -->
+
 [dotnet]: https://dotnet.microsoft.com
 [actions]: https://docs.github.com/en/actions
 [docker-container-action]: https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action
