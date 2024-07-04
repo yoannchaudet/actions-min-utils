@@ -15,9 +15,9 @@ public class MarkersParser
     /// </summary>
     /// <param name="markerPrefix">
     ///     The prefix to use for the marker. Default to
-    ///     <c><!--</c></param>
-    /// <param name="markerSuffix">The suffix to use for the marker. Default to <c>--></c>
+    ///     <c>&lt;!--</c>
     /// </param>
+    /// <param name="markerSuffix">The suffix to use for the marker. Default to <c>--></c></param>
     public MarkersParser(string markerPrefix = "<!--", string markerSuffix = "-->")
     {
         MarkerPrefix = markerPrefix;
