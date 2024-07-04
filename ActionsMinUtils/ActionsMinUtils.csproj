@@ -11,6 +11,7 @@
         <PackageReference Include="octokit" Version="13.0.0"/>
         <PackageReference Include="octokit.graphql" Version="0.3.0-beta"/>
         <PackageReference Include="Polly" Version="8.4.1"/>
+        <PackageReference Include="Scriban" Version="5.10.0"/>
     </ItemGroup>
 
     <!-- Build & CI -->
