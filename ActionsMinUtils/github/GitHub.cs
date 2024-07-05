@@ -79,4 +79,53 @@ public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
     {
         return await ResiliencePipeline.ExecuteAsync(async _ => await callback());
     }
+
+    // Some utilities
+
+    /// <summary>
+    /// Create or update an issue label in a repository.
+    /// </summary>
+    /// <param name="owner"></param>
+    /// <param name="repository"></param>
+    /// <param name="label"></param>
+    /// <param name="color"></param>
+    /// <returns></returns>
+    public async Task<string> CreateOrUpdateIssueLabel(string owner, string repository, string label, string color)
+    {
+        // Unfortunately we cannot use GraphQL for that, so switch to Rest
+
+        // Check if a label already exists
+        Label? existingLabel = null;
+        try
+        {
+            Logger.Info("Fetching existing label {label} from {owner}/{repository}");
+            existingLabel = await ExecuteAsync(async () => await RestClient.Issue.Labels.Get(
+                owner,
+                repository, label));
+        }
+        catch (NotFoundException)
+        {
+        }
+
+        // Create label
+        if (existingLabel == null)
+        {
+            Logger.Info("Creating label {label} in {owner}/{repository}");
+            return (await ExecuteAsync(async () => await RestClient.Issue.Labels.Create(owner,
+                repository,
+                new NewLabel(label, color)))).NodeId;
+        }
+
+        // Update label
+        if (existingLabel.Color != color)
+        {
+            Logger.Info("Updating color for label {label} in {owner}/{repository}");
+            return (await ExecuteAsync(async () => await RestClient.Issue.Labels.Update(owner,
+                repository, label,
+                new LabelUpdate(label, color)))).NodeId;
+        }
+
+        // Keep existing label
+        return existingLabel.NodeId;
+    }
 }
