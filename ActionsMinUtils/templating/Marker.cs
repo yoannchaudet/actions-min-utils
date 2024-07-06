@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace ActionsMinUtils.templating;
 
 /// <summary>
@@ -29,9 +31,15 @@ public class Marker
     {
     }
 
+    /// <summary>
+    ///     Name.
+    /// </summary>
     public string Name { get; }
 
-    public IEnumerable<KeyValuePair<string, string>> Arguments => _arguments;
+    /// <summary>
+    ///     Arguments.
+    /// </summary>
+    public IReadOnlyDictionary<string, string> Arguments => new ReadOnlyDictionary<string, string>(_arguments);
 
     /// <summary>
     ///     Add an argument.
