@@ -98,7 +98,7 @@ public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
         Label? existingLabel = null;
         try
         {
-            Logger.Info("Fetching existing label {label} from {owner}/{repository}");
+            Logger.Debug($"Fetching existing label {label} from {owner}/{repository}");
             existingLabel = await ExecuteAsync(async () => await RestClient.Issue.Labels.Get(
                 owner,
                 repository, label));
@@ -110,7 +110,7 @@ public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
         // Create label
         if (existingLabel == null)
         {
-            Logger.Info("Creating label {label} in {owner}/{repository}");
+            Logger.Debug($"Creating label {label} in {owner}/{repository}");
             return (await ExecuteAsync(async () => await RestClient.Issue.Labels.Create(owner,
                 repository,
                 new NewLabel(label, color)))).NodeId;
@@ -119,7 +119,7 @@ public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
         // Update label
         if (existingLabel.Color != color)
         {
-            Logger.Info("Updating color for label {label} in {owner}/{repository}");
+            Logger.Debug($"Updating color for label {label} in {owner}/{repository}");
             return (await ExecuteAsync(async () => await RestClient.Issue.Labels.Update(owner,
                 repository, label,
                 new LabelUpdate(label, color)))).NodeId;
