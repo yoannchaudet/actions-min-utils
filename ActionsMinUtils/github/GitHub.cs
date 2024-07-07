@@ -83,7 +83,7 @@ public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
     // Some utilities
 
     /// <summary>
-    /// Create or update an issue label in a repository.
+    ///     Create or update an issue label in a repository.
     /// </summary>
     /// <param name="owner"></param>
     /// <param name="repository"></param>

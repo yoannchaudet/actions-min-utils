@@ -77,4 +77,74 @@ public class MarkersParserTests
         Assert.Equal(80, marker3.Start);
         Assert.Equal(9, marker3.Line);
     }
+
+    [Fact]
+    public void TryGetContentBetweenMarkers()
+    {
+        AssertTryGetContentBetweenMarkers(@"
+bla bla
+<!-- start -->
+content
+<!-- end -->
+bla bla", $"{Environment.NewLine}content{Environment.NewLine}");
+
+        AssertTryGetContentBetweenMarkers("<!-- start -->content<!-- end -->", "content");
+
+        AssertTryGetContentBetweenMarkers(@"<!-- start -->
+content
+<!-- end -->
+bla bla", $"{Environment.NewLine}content{Environment.NewLine}");
+
+        AssertTryGetContentBetweenMarkers(@"
+bla bla
+<!-- start -->
+content
+<!-- end -->", $"{Environment.NewLine}content{Environment.NewLine}");
+
+        AssertTryGetContentBetweenMarkers(@"<!-- start -->content
+on multiple lines<!-- end -->", $"content{Environment.NewLine}on multiple lines");
+
+        AssertTryGetContentBetweenMarkers("<!-- start --><!-- end -->", "");
+
+        // Some bad cases
+        AssertTryGetContentBetweenMarkers("<!-- end --><!-- start -->", null, false);
+        AssertTryGetContentBetweenMarkers("<!-- start -->", null, false);
+        AssertTryGetContentBetweenMarkers("<!-- end -->", null, false);
+    }
+
+    [Fact]
+    public void TryReplaceContentBetweenMarkers()
+    {
+        AssertTryReplaceContentBetweenMarkers("<!-- start -->content<!-- end -->",
+            "<!-- start -->new content<!-- end -->");
+        AssertTryReplaceContentBetweenMarkers("bla<!-- start -->content<!-- end -->",
+            "bla<!-- start -->new content<!-- end -->");
+        AssertTryReplaceContentBetweenMarkers("bla<!-- start -->content<!-- end -->bla",
+            "bla<!-- start -->new content<!-- end -->bla");
+        AssertTryReplaceContentBetweenMarkers("bla<!-- start --><!-- end -->bla",
+            "bla<!-- start -->new content<!-- end -->bla");
+        AssertTryReplaceContentBetweenMarkers("<!-- end -->content<!-- start -->", null, false);
+    }
+
+    private void AssertTryGetContentBetweenMarkers(string text, string? expectedContent, bool expected = true)
+    {
+        var parser = new MarkersParser();
+        var markers = parser.FromText(text).ToList();
+        var start = markers.FirstOrDefault(m => m.Name == "start");
+        var end = markers.FirstOrDefault(m => m.Name == "end");
+        Assert.Equal(expected, MarkersParser.TryGetContentBetweenMarkers(text, start, end, out var content));
+        Assert.Equal(expectedContent, content);
+    }
+
+    private void AssertTryReplaceContentBetweenMarkers(string text, string? expectedText, bool expected = true)
+    {
+        var parser = new MarkersParser();
+        var markers = parser.FromText(text).ToList();
+        var start = markers.FirstOrDefault(m => m.Name == "start");
+        var end = markers.FirstOrDefault(m => m.Name == "end");
+        Assert.Equal(expected,
+            MarkersParser.TryReplaceContentBetweenMarkers(text, start, end, "new content", out var newText));
+        if (expected)
+            Assert.Equal(expectedText, newText);
+    }
 }

@@ -9,26 +9,26 @@ namespace ActionsMinUtils.templating;
 /// </summary>
 public static class Templates
 {
-  /// <summary>
-  ///     Render a liquid template from a string.
-  /// </summary>
-  /// <param name="text">Template to render.</param>
-  /// <param name="context">Optional context to pass to the template.</param>
-  /// <returns></returns>
-  public static string RenderLiquidFromText(string text, object? context = null)
+    /// <summary>
+    ///     Render a liquid template from a string.
+    /// </summary>
+    /// <param name="text">Template to render.</param>
+    /// <param name="context">Optional context to pass to the template.</param>
+    /// <returns></returns>
+    public static string RenderLiquidFromText(string text, object? context = null)
     {
         // Render
         var template = Template.ParseLiquid(text);
         return RenderTemplate(template, context);
     }
 
-  /// <summary>
-  ///     Render a Liquid template from a file.
-  /// </summary>
-  /// <param name="path">Path to the file.</param>
-  /// <param name="context">Optional context to pass to the template.</param>
-  /// <returns></returns>
-  public static string RenderLiquidFromFile(string path, object? context = null)
+    /// <summary>
+    ///     Render a Liquid template from a file.
+    /// </summary>
+    /// <param name="path">Path to the file.</param>
+    /// <param name="context">Optional context to pass to the template.</param>
+    /// <returns></returns>
+    public static string RenderLiquidFromFile(string path, object? context = null)
     {
         // Validate the file exists
         if (!File.Exists(path))
