@@ -103,7 +103,7 @@ public class MarkersParser
     }
 
     /// <summary>
-    ///     Return the content between two markers in a given text.
+    ///     Return the content between two markers in a given text. Including the markers.
     /// </summary>
     /// <param name="text">The text in which to return the content.</param>
     /// <param name="start">Start marker.</param>
@@ -120,12 +120,12 @@ public class MarkersParser
         }
 
         // Find content
-        content = text.Substring(start!.End, end!.Start - start.End);
+        content = text.Substring(start!.Start, end!.End - start.Start);
         return true;
     }
 
     /// <summary>
-    ///     Replace the content between two markers in a given text.
+    ///     Replace the content between two markers in a given text. Including the markers.
     /// </summary>
     /// <param name="text">The text in which to do the replacement.</param>
     /// <param name="start">Start marker.</param>
@@ -146,10 +146,10 @@ public class MarkersParser
 
         // Replace content
         var builder = new StringBuilder();
-        builder.Append(text.Substring(0, start!.End));
+        builder.Append(text.Substring(0, start!.Start));
         if (content != null)
             builder.Append(content);
-        builder.Append(text.Substring(end!.Start, text.Length - end.Start));
+        builder.Append(text.Substring(end!.End, text.Length - end.End));
         newText = builder.ToString();
         return true;
     }
