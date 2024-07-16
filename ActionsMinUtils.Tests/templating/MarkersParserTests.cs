@@ -86,25 +86,25 @@ bla bla
 <!-- start -->
 content
 <!-- end -->
-bla bla", $"{Environment.NewLine}content{Environment.NewLine}");
+bla bla", $"<!-- start -->{Environment.NewLine}content{Environment.NewLine}<!-- end -->");
 
-        AssertTryGetContentBetweenMarkers("<!-- start -->content<!-- end -->", "content");
+        AssertTryGetContentBetweenMarkers("<!-- start -->content<!-- end -->", "<!-- start -->content<!-- end -->");
 
         AssertTryGetContentBetweenMarkers(@"<!-- start -->
 content
 <!-- end -->
-bla bla", $"{Environment.NewLine}content{Environment.NewLine}");
+bla bla", $"<!-- start -->{Environment.NewLine}content{Environment.NewLine}<!-- end -->");
 
         AssertTryGetContentBetweenMarkers(@"
 bla bla
 <!-- start -->
 content
-<!-- end -->", $"{Environment.NewLine}content{Environment.NewLine}");
+<!-- end -->", $"<!-- start -->{Environment.NewLine}content{Environment.NewLine}<!-- end -->");
 
         AssertTryGetContentBetweenMarkers(@"<!-- start -->content
-on multiple lines<!-- end -->", $"content{Environment.NewLine}on multiple lines");
+on multiple lines<!-- end -->", $"<!-- start -->content{Environment.NewLine}on multiple lines<!-- end -->");
 
-        AssertTryGetContentBetweenMarkers("<!-- start --><!-- end -->", "");
+        AssertTryGetContentBetweenMarkers("<!-- start --><!-- end -->", "<!-- start --><!-- end -->");
 
         // Some bad cases
         AssertTryGetContentBetweenMarkers("<!-- end --><!-- start -->", null, false);
@@ -116,13 +116,13 @@ on multiple lines<!-- end -->", $"content{Environment.NewLine}on multiple lines"
     public void TryReplaceContentBetweenMarkers()
     {
         AssertTryReplaceContentBetweenMarkers("<!-- start -->content<!-- end -->",
-            "<!-- start -->new content<!-- end -->");
+            "new content");
         AssertTryReplaceContentBetweenMarkers("bla<!-- start -->content<!-- end -->",
-            "bla<!-- start -->new content<!-- end -->");
+            "blanew content");
         AssertTryReplaceContentBetweenMarkers("bla<!-- start -->content<!-- end -->bla",
-            "bla<!-- start -->new content<!-- end -->bla");
+            "blanew contentbla");
         AssertTryReplaceContentBetweenMarkers("bla<!-- start --><!-- end -->bla",
-            "bla<!-- start -->new content<!-- end -->bla");
+            "blanew contentbla");
         AssertTryReplaceContentBetweenMarkers("<!-- end -->content<!-- start -->", null, false);
     }
 
