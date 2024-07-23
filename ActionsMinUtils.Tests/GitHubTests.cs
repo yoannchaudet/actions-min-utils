@@ -21,7 +21,7 @@ public class GitHubTests : ConsoleOutputTests
     private GitHub GitHub { get; }
 
     [Fact]
-    public async void ExecuteAsyncPassThru()
+    public async Task ExecuteAsyncPassThru()
     {
         ValueTask<bool> Pass()
         {
@@ -32,7 +32,7 @@ public class GitHubTests : ConsoleOutputTests
     }
 
     [Fact]
-    public async void ExecuteAsyncRetries()
+    public async Task ExecuteAsyncRetries()
     {
         var e = new HttpRequestException("snap", null, HttpStatusCode.InternalServerError);
         Func<ValueTask<bool>> fail = () => throw e;

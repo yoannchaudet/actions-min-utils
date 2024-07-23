@@ -42,4 +42,27 @@ public abstract class ActionContext
     {
         return Environment.GetEnvironmentVariable(variable);
     }
+
+    /// <summary>
+    /// Try and return a context for a given type.
+    /// </summary>
+    /// <typeparam name="T">The type of the context to return.</typeparam>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    public static T? TryCreate<T>() where T : ActionContext
+    {
+        try
+        {
+            // Instantiate the context
+            var obj = Activator.CreateInstance(typeof(T));
+            if (obj != null)
+                return (T)obj;
+            throw new InvalidOperationException("Unexpected null context");
+        }
+        catch (Exception ex)
+        {
+            Logger.Fatal($"Unable to create context, you may want to review your inputs.\n{ex}");
+            return null;
+        }
+    }
 }
