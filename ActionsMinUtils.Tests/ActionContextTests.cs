@@ -54,4 +54,29 @@ public class ActionContextTests(ITestOutputHelper testOutputHelper) : ConsoleOut
         var e = Assert.Throws<Exception>(() => ctx.GetInput("test", true));
         Assert.Equal("Unable to read input 'test' marked as required", e.Message);
     }
+
+    [Fact]
+    public void TryCreate1()
+    {
+        Assert.NotNull(ActionContext.TryCreate<Ctx1>());
+    }
+
+    [Fact]
+    public void TryCreate2()
+    {
+        var ctx = ActionContext.TryCreate<Ctx2>();
+        Assert.Throws<Exception>(() =>
+        {
+            var s = ctx!.Something;
+        });
+    }
+
+    private class Ctx1 : ActionContext
+    {
+    }
+
+    private class Ctx2 : ActionContext
+    {
+        public string Something => GetInput("something", true)!;
+    }
 }
