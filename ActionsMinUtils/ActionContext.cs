@@ -44,7 +44,7 @@ public abstract class ActionContext
     }
 
     /// <summary>
-    /// Try and return a context for a given type.
+    ///     Try and return a context for a given type.
     /// </summary>
     /// <typeparam name="T">The type of the context to return.</typeparam>
     /// <returns></returns>

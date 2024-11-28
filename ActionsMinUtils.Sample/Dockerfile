@@ -1,4 +1,4 @@
-# Build a small image for .NET 8
+# Build a small image for .NET 9
 # Largely inspired by https://www.thorsten-hans.com/how-to-build-smaller-and-secure-docker-images-for-net5
 
 ARG RUNTIME=linux-x64
@@ -6,7 +6,7 @@ ARG BUILD_CONFIGURATION=Release
 ARG PROJECT_FILE=ActionsMinUtils.Sample.csproj
 
 # Builder
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS builder
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS builder
 ARG RUNTIME
 ARG BUILD_CONFIGURATION
 ARG PROJECT_FILE
@@ -22,7 +22,7 @@ RUN dotnet publish $PROJECT_FILE \
     /p:PublishSingleFile=true
 
 # Runtime
-FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-alpine
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-alpine
 ARG PROJECT_FILE
 ENV \
     DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
