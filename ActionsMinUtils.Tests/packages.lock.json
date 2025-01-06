@@ -4,9 +4,9 @@
     "net9.0": {
       "coverlet.collector": {
         "type": "Direct",
-        "requested": "[6.0.2, )",
-        "resolved": "6.0.2",
-        "contentHash": "bJShQ6uWRTQ100ZeyiMqcFlhP7WJ+bCuabUs885dJiBEzMsJMSFr7BOyeCw4rgvQokteGi5rKQTlkhfQPUXg2A=="
+        "requested": "[6.0.3, )",
+        "resolved": "6.0.3",
+        "contentHash": "SvLbRq7gjzE34BI90vP6ge812+PAjinNoKhdFZHwVEu/ozJgZY+0KyDh1K0teDeMeuzQJuF8OvleRBYXsZDz0A=="
       },
       "Microsoft.NET.Test.Sdk": {
         "type": "Direct",
@@ -107,8 +107,8 @@
       },
       "Scriban": {
         "type": "Transitive",
-        "resolved": "5.12.0",
-        "contentHash": "/YTTCxjBIpfwX3MKMT4JMFVl1jX4IHW7zih+Bg3cTIkzGnbFt+B3l/k90ILDw6DRiFE7T+VxEyls7zk4p029ng=="
+        "resolved": "5.12.1",
+        "contentHash": "zezB4VyYSALWvveki0IAdqxrx2r0wHqwQqP5LldFSHZ3U12YZCvt1nwJb6TZVLkerHZLP2FJIkemubLfOihdBQ=="
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
@@ -164,7 +164,7 @@
         "type": "Project",
         "dependencies": {
           "Polly": "[8.5.0, )",
-          "Scriban": "[5.12.0, )",
+          "Scriban": "[5.12.1, )",
           "octokit": "[13.0.1, )",
           "octokit.graphql": "[0.3.0-beta, )"
         }
