@@ -107,8 +107,8 @@
       },
       "Scriban": {
         "type": "Transitive",
-        "resolved": "5.12.1",
-        "contentHash": "zezB4VyYSALWvveki0IAdqxrx2r0wHqwQqP5LldFSHZ3U12YZCvt1nwJb6TZVLkerHZLP2FJIkemubLfOihdBQ=="
+        "resolved": "6.0.0",
+        "contentHash": "MZOtxtcehrCGiVwHpdcZQSe04Zy4IJfltVZdmlr1nFvSvEXnu50SWa7fonC0bqfMyTnNhQcY9BmEt882P129qw=="
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
@@ -164,7 +164,7 @@
         "type": "Project",
         "dependencies": {
           "Polly": "[8.5.2, )",
-          "Scriban": "[5.12.1, )",
+          "Scriban": "[6.0.0, )",
           "octokit": "[14.0.0, )",
           "octokit.graphql": "[0.3.0-beta, )"
         }
