@@ -40,9 +40,9 @@
       },
       "Scriban": {
         "type": "Direct",
-        "requested": "[6.0.0, )",
-        "resolved": "6.0.0",
-        "contentHash": "MZOtxtcehrCGiVwHpdcZQSe04Zy4IJfltVZdmlr1nFvSvEXnu50SWa7fonC0bqfMyTnNhQcY9BmEt882P129qw=="
+        "requested": "[6.1.0, )",
+        "resolved": "6.1.0",
+        "contentHash": "oqny6S/W1ZYb9euctTJpIgxNqqHFziyR9yRzbmgF05JIXEsGFrfVuEz2RAceZEzh2Mhm+plDdzre4QIrHwymPA=="
       },
       "Newtonsoft.Json": {
         "type": "Transitive",
