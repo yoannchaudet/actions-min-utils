@@ -31,11 +31,11 @@
       },
       "Polly": {
         "type": "Direct",
-        "requested": "[8.6.0, )",
-        "resolved": "8.6.0",
-        "contentHash": "Lj8xVTtETAEUB0z0/c75vanP2mhKnuPXtyJlDWGgvv7v5i+MQcNK3K8Zvl7VjCOO4Ko4cxUlQr9Hb76DsV/khA==",
+        "requested": "[8.6.2, )",
+        "resolved": "8.6.2",
+        "contentHash": "+irkpMJQ29+o8+u/SdN+1+AP4rB4TGoKZ6gXhD04dPKG+DX2grvKJ6Z6UAK3vYkSQQcbATt+YPt+ac6/X2wVAA==",
         "dependencies": {
-          "Polly.Core": "8.6.0"
+          "Polly.Core": "8.6.2"
         }
       },
       "Scriban": {
@@ -51,8 +51,8 @@
       },
       "Polly.Core": {
         "type": "Transitive",
-        "resolved": "8.6.0",
-        "contentHash": "3CY5h0gITrx+Ei5JvzZpuYLj0yEJquLeGLT9to4isjR7CN017ePDe1Fyp5bwEytu473CbWYiYDGEeY4uE8Iujw=="
+        "resolved": "8.6.2",
+        "contentHash": "ImAKLH6qVDjj0vzw+QxMYxxT/NhQrHK+sZE4GT5JbIfDBOrMDbE4we3BR6SqUQCJuKdjOKf3smUjxIgOUUfNVw=="
       }
     }
   }
