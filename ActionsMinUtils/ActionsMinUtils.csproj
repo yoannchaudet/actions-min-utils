@@ -2,16 +2,16 @@
 
     <!-- Testing (access to internals) -->
     <ItemGroup>
-        <InternalsVisibleTo Include="DynamicProxyGenAssembly2"/> <!-- NSubstitute -->
-        <InternalsVisibleTo Include="ActionsMinUtils.Tests"/>
+        <InternalsVisibleTo Include="DynamicProxyGenAssembly2" /> <!-- NSubstitute -->
+        <InternalsVisibleTo Include="ActionsMinUtils.Tests" />
     </ItemGroup>
 
     <!-- Runtime dependencies -->
     <ItemGroup>
-        <PackageReference Include="octokit" Version="14.0.0"/>
-        <PackageReference Include="octokit.graphql" Version="0.3.0-beta"/>
-        <PackageReference Include="Polly" Version="8.6.0"/>
-        <PackageReference Include="Scriban" Version="6.2.1"/>
+        <PackageReference Include="octokit" Version="14.0.0" />
+        <PackageReference Include="octokit.graphql" Version="0.3.0-beta" />
+        <PackageReference Include="Polly" Version="8.6.2" />
+        <PackageReference Include="Scriban" Version="6.2.1" />
     </ItemGroup>
 
     <!-- Build & CI -->
