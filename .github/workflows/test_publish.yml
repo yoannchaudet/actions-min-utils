@@ -44,7 +44,7 @@ jobs:
       - run: dotnet pack ActionsMinUtils --configuration ${{ env.CONFIGURATION }} --output ${{ env.NUGET_DIRECTORY }}
 
       # Publish the NuGet package as an artifact, so they can be used in the following jobs
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: nuget
           if-no-files-found: error
@@ -60,7 +60,7 @@ jobs:
         uses: actions/setup-dotnet@v5
 
       # Download the NuGet package created in the previous job
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: nuget
           path: ${{ env.NUGET_DIRECTORY }}
@@ -106,7 +106,7 @@ jobs:
     needs: [validate_package, test]
     steps:
       # Download the NuGet package created in the previous job
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: nuget
           path: ${{ env.NUGET_DIRECTORY }}
