@@ -79,4 +79,10 @@ public class GitHubTests : ConsoleOutputTests
         Assert.Equal(5, lines.Count);
         Assert.Equal(5, lines.Where((line, i) => line.Contains($"attempt #{i + 1} of 5")).Count());
     }
+
+    [Fact]
+    public void VerifyInheritance()
+    {
+        Assert.True(typeof(AuthorizationException).IsSubclassOf(typeof(ApiException)), "AuthorizationException should be a subclass of ApiException");
+    }
 }
