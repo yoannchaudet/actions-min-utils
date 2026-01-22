@@ -44,7 +44,7 @@ public class GitHub(string githubToken, Func<int, TimeSpan>? delay = null)
             ShouldHandle = new PredicateBuilder()
                 .Handle<HttpRequestException>(r =>
                     r.StatusCode == HttpStatusCode.InternalServerError || r.StatusCode == HttpStatusCode.BadGateway)
-                .Handle<AuthorizationException>(),
+                .Handle<ApiException>(),
 
             // Add a little randomness to the delay
             UseJitter = true,
