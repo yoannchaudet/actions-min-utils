@@ -1,4 +1,5 @@
 using System.Net;
+using Octokit;
 using ActionsMinUtils.github;
 using ActionsMinUtils.Tests.utils;
 using Xunit.Abstractions;
@@ -39,6 +40,30 @@ public class GitHubTests : ConsoleOutputTests
 
         // Validate the (last) exception is thrown
         await Assert.ThrowsAsync<HttpRequestException>(async () => await GitHub.ExecuteAsync(fail));
+
+        // Validate the output has 5 warnings
+        TestOutputHelper.WriteLine("-------");
+        TestOutputHelper.WriteLine(ConsoleOutput.Output());
+        TestOutputHelper.WriteLine("-------");
+        var lines = ConsoleOutput.Output().Split(Environment.NewLine,
+                StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
+        TestOutputHelper.WriteLine("-------");
+        TestOutputHelper.WriteLine(string.Join(Environment.NewLine, lines));
+        TestOutputHelper.WriteLine("-------");
+
+        Assert.Equal(5, lines.Count);
+        Assert.Equal(5, lines.Where((line, i) => line.Contains($"attempt #{i + 1} of 5")).Count());
+    }
+
+    [Fact]
+    public async Task ExecuteAsyncRetriesApiException()
+    {
+        var e = new ApiException("snap", HttpStatusCode.InternalServerError);
+        Func<ValueTask<bool>> fail = () => throw e;
+
+        // Validate the (last) exception is thrown
+        await Assert.ThrowsAsync<ApiException>(async () => await GitHub.ExecuteAsync(fail));
 
         // Validate the output has 5 warnings
         TestOutputHelper.WriteLine("-------");
