@@ -34,7 +34,7 @@ public class LoggerTests(ITestOutputHelper testOutputHelper) : ConsoleOutputTest
     {
         Logger.Error("hello",
             new Logger.AnnotationProperties
-                { Title = "", File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
+            { Title = "", File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
         Assert.Equal($"::error title=,file=foo,line=1,endLine=2,col=3,endColumn=4::hello{Environment.NewLine}",
             ConsoleOutput.Output());
     }
@@ -51,7 +51,7 @@ public class LoggerTests(ITestOutputHelper testOutputHelper) : ConsoleOutputTest
     {
         Logger.Warning("hello",
             new Logger.AnnotationProperties
-                { File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
+            { File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
         Assert.Equal($"::warning title=,file=foo,line=1,endLine=2,col=3,endColumn=4::hello{Environment.NewLine}",
             ConsoleOutput.Output());
     }
@@ -68,7 +68,7 @@ public class LoggerTests(ITestOutputHelper testOutputHelper) : ConsoleOutputTest
     {
         Logger.Notice("hello",
             new Logger.AnnotationProperties
-                { File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
+            { File = "foo", StartLine = "1", EndLine = "2", StartColumn = "3", EndColumn = "4" });
         Assert.Equal($"::notice title=,file=foo,line=1,endLine=2,col=3,endColumn=4::hello{Environment.NewLine}",
             ConsoleOutput.Output());
     }
