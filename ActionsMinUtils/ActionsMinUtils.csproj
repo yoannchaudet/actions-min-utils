@@ -10,13 +10,13 @@
     <ItemGroup>
         <PackageReference Include="octokit" Version="14.0.0" />
         <PackageReference Include="octokit.graphql" Version="0.3.0-beta" />
-        <PackageReference Include="Polly" Version="8.6.6" />
-        <PackageReference Include="Scriban" Version="7.2.4" />
+        <PackageReference Include="Polly" Version="8.7.0" />
+        <PackageReference Include="Scriban" Version="7.2.5" />
     </ItemGroup>
 
     <!-- Build & CI -->
     <ItemGroup>
-        <PackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.2">
+        <PackageReference Include="DotNet.ReproducibleBuilds" Version="2.0.5">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
