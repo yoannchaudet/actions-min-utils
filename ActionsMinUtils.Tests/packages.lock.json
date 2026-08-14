@@ -20,9 +20,9 @@
       },
       "NSubstitute": {
         "type": "Direct",
-        "requested": "[6.0.0, )",
-        "resolved": "6.0.0",
-        "contentHash": "0gvKMbiJ+/WrfbcfBfqRZZrvfLJcd3rqkqVMjjlY5dtmLRVzMY+o/K/rJUStofQ2haSr9Vd04YDfvZtVVGS3/A==",
+        "requested": "[6.1.0, )",
+        "resolved": "6.1.0",
+        "contentHash": "4RKj/p9l0rylPcH+8EXMVbC4yNyfadUdzBFxog2caVThkMQpDw8Q+468mkFMjEmsFt+jXJSdtTwgVNkWzyCsHw==",
         "dependencies": {
           "Castle.Core": "5.1.1"
         }
@@ -103,8 +103,8 @@
       },
       "Scriban": {
         "type": "Transitive",
-        "resolved": "7.2.5",
-        "contentHash": "6HDyv0P6PVdx/prWM3Aw0QHAT/DCpkBxOovZ2iPIH4L4ZvJ13JNYJgyUI+xJ5K2agXreYTBe23AL5ZQNTqJQvA=="
+        "resolved": "7.2.6",
+        "contentHash": "k6DvaRY83jtigNudMoYlN5Zg42JEDDOCSeKrnpHiE5Gthkd9Fr+6VnYFnL3DqtkZTtPezJJdoX3ZfOTTFpQEMg=="
       },
       "System.Diagnostics.EventLog": {
         "type": "Transitive",
@@ -155,7 +155,7 @@
         "type": "Project",
         "dependencies": {
           "Polly": "[8.7.0, )",
-          "Scriban": "[7.2.5, )",
+          "Scriban": "[7.2.6, )",
           "octokit": "[14.0.0, )",
           "octokit.graphql": "[0.3.0-beta, )"
         }
